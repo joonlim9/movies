@@ -1,4 +1,5 @@
 from flask import Flask, render_template
+import requests
 
 app = Flask(__name__)
 
@@ -7,8 +8,9 @@ app = Flask(__name__)
 
 @app.route("/")
 def main():
-    data = "This is My Movie Search Website"
-    return render_template("home.html")
+    rawData = requests.get("http://www.omdbapi.com/?apikey=b917284c&s=batman")
+    movies = rawData.json()
+    return render_template("home.html", movies=movies)
 
 
 if __name__ == "__main__":
