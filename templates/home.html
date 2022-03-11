@@ -2,7 +2,9 @@
 {% block movies %}
 
 {% for movie in movies.Search %}
-  <div class="card" style="width: 18rem">
+
+<div class="col-sm mb-3">
+  <div class="card" style="width: 24rem">
     <img src="{{ movie.Poster }}" class="card-img-top" alt="..." />
     <div class="card-body">
       <h5 class="card-title">{{ movie.Title }}</h5>
@@ -12,6 +14,8 @@
       <a href="#" class="btn btn-primary">Go somewhere</a>
     </div>
   </div>
+</div>
+
 {% endfor %}
 
 {% endblock %}
