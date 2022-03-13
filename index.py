@@ -27,5 +27,10 @@ def single_movie(title):
     return render_template("single_movie.html", movie=movie)
 
 
+@app.route("/search")
+def search_form():
+    return render_template("search.html")
+
+
 if __name__ == "__main__":
     app.run(debug=True)
