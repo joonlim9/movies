@@ -13,5 +13,19 @@ def main():
     return render_template("home.html", movies=movies)
 
 
+@app.route("/<title>")
+def movies_by_title(title):
+    rawData = requests.get("http://www.omdbapi.com/?apikey=b917284c&s="+title)
+    movies = rawData.json()
+    return render_template("home.html", movies=movies)
+
+
+@app.route("/single_movie/<title>")
+def single_movie(title):
+    rawData = requests.get("http://www.omdbapi.com/?apikey=b917284c&t="+title)
+    movie = rawData.json()
+    return render_template("single_movie.html", movie=movie)
+
+
 if __name__ == "__main__":
     app.run(debug=True)

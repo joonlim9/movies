@@ -1,0 +1,27 @@
+{% extends "index.html" %}
+{% block movies %}
+
+<div class="col-sm-3 mb-3">
+  <img src="{{ movie.Poster }}" class="img-thumbnail" alt="..." />
+</div>
+
+
+<div class="col-lg mb-3">
+  <div class="card">
+    
+    <div class="card-body">
+      <h5 class="card-title">Title: {{ movie.Title }}</h5>
+      <p class="card-text">Release Date: {{ movie.Released }}</p>
+      <p class="card-text">StoryLine: {{ movie.Plot }}</p>
+      <p class="card-text">Runtime: {{ movie.Runtime }}</p>
+      <p class="card-text">Genre: {{ movie.Genre }}</p>      
+      <p class="card-text">Actors: {{ movie.Actors }}</p>      
+      <p class="card-text">Language: {{ movie.Language }}</p>
+      <p class="card-text">Country: {{ movie.Country }}</p>
+      <p class="card-text">Rating: {{ movie.imdbRating }}</p>
+      <p class="card-text">Awards: {{ movie.Awards }}</p>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
