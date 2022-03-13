@@ -1,7 +1,7 @@
 {% extends "index.html" %}
 
 {% block search %}
-<form class="col-lg">
+<form class="col-lg" action="{{url_for('search_by_title')}}" method="post">
     <div class="form-row">
         <div class="col-md-6 mb-3">
             <label for="validationTitle">Title</label>
@@ -16,3 +16,59 @@
     <button class="btn btn-primary" type="submit">Search</button>
 </form>
 {% endblock %}
+
+
+{% block movies %}
+
+{% if movies %}
+{% for movie in movies.Search %}
+
+<div class="col-sm mb-3">
+  <div class="card" style="width: 24rem">
+    <img src="{{ movie.Poster }}" class="card-img-top" width="200px" height="500px" alt="..."/>
+    <div class="card-body">
+      <h5 class="card-title">{{ movie.Title }}</h5>
+      <p class="card-text">
+        {{ movie.Year }}
+      </p>
+      <a href="{{url_for('single_movie', title=movie.Title)}}" class="btn btn-primary">Descriptions</a>
+    </div>
+  </div>
+</div>
+
+{% endfor %}
+{% else %}
+    <div></div>
+{% endif %}
+
+{% endblock %}
+
+<!-- {% block search_result %}
+
+    {% if movie %}
+    <div class="col-sm-3 mb-3">
+        <img src="{{ movie.Poster }}" class="img-thumbnail" alt="..." />
+    </div>
+    
+    
+    <div class="col-lg mb-3">
+        <div class="card">
+        
+        <div class="card-body">
+            <h5 class="card-title">Title: {{ movie.Title }}</h5>
+            <p class="card-text">Release Date: {{ movie.Released }}</p>
+            <p class="card-text">StoryLine: {{ movie.Plot }}</p>
+            <p class="card-text">Runtime: {{ movie.Runtime }}</p>
+            <p class="card-text">Genre: {{ movie.Genre }}</p>      
+            <p class="card-text">Actors: {{ movie.Actors }}</p>      
+            <p class="card-text">Language: {{ movie.Language }}</p>
+            <p class="card-text">Country: {{ movie.Country }}</p>
+            <p class="card-text">Rating: {{ movie.imdbRating }}</p>
+            <p class="card-text">Awards: {{ movie.Awards }}</p>
+        </div>
+        </div>
+    </div>
+    {% else %}
+    <div></div>
+    {% endif %}   
+{% endblock %} -->

@@ -1,21 +1,12 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, url_for, request
 import requests
 
 app = Flask(__name__)
 
 
-# route == url == link
-
 @app.route("/")
 def main():
     rawData = requests.get("http://www.omdbapi.com/?apikey=b917284c&s=batman")
-    movies = rawData.json()
-    return render_template("home.html", movies=movies)
-
-
-@app.route("/<title>")
-def movies_by_title(title):
-    rawData = requests.get("http://www.omdbapi.com/?apikey=b917284c&s="+title)
     movies = rawData.json()
     return render_template("home.html", movies=movies)
 
@@ -30,6 +21,18 @@ def single_movie(title):
 @app.route("/search")
 def search_form():
     return render_template("search.html")
+
+
+@app.route("/search_by_title", methods=["POST"])
+def search_by_title():
+    title = request.form["title"]
+    year = request.form["year"]
+    if year != "":
+        rawData = requests.get("http://www.omdbapi.com/?apikey=b917284c&s="+title+"&y="+year)
+    else:
+        rawData = requests.get("http://www.omdbapi.com/?apikey=b917284c&s="+title)
+    movies = rawData.json()
+    return render_template("search.html", movies=movies)
 
 
 if __name__ == "__main__":
