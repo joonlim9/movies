@@ -1,4 +1,4 @@
-from flask import Flask, render_template, url_for, request
+from flask import Flask, render_template, request
 import requests
 
 app = Flask(__name__)
@@ -6,9 +6,7 @@ app = Flask(__name__)
 
 @app.route("/")
 def main():
-    rawData = requests.get("http://www.omdbapi.com/?apikey=b917284c&s=batman")
-    movies = rawData.json()
-    return render_template("home.html", movies=movies)
+    return render_template("home.html")
 
 
 @app.route("/single_movie/<title>")
@@ -32,7 +30,9 @@ def search_by_title():
     else:
         rawData = requests.get("http://www.omdbapi.com/?apikey=b917284c&s="+title)
     movies = rawData.json()
-    return render_template("search.html", movies=movies)
+    if not movies:
+        movies = False
+    return render_template("results.html", movies=movies)
 
 
 if __name__ == "__main__":

@@ -1,21 +1,13 @@
 {% extends "index.html" %}
-{% block movies %}
-
-{% for movie in movies.Search %}
-
-<div class="col-sm mb-3">
-  <div class="card" style="width: 24rem">
-    <img src="{{ movie.Poster }}" class="card-img-top" width="200px" height="500px" alt="..." />
-    <div class="card-body">
-      <h5 class="card-title">{{ movie.Title }}</h5>
-      <p class="card-text">
-        {{ movie.Year }}
-      </p>
-      <a href="{{url_for('single_movie', title=movie.Title)}}" class="btn btn-primary">Descriptions</a>
-    </div>
-  </div>
+{% block content %}
+<br>
+<br>
+<div class="jumbotron">
+  <h1>About our website</h1>
+  <br>
+  <p>If you want to search for movies, see which actors are in the play, check the imdb ratings, You came to the right place :)<br>
+    You can leave reviews on the movies that other users can see <br>
+    You can also add the movies you like into your favorites list!</p>
 </div>
-
-{% endfor %}
 
 {% endblock %}
