@@ -20,6 +20,9 @@
       <p class="card-text">Language: {{ movie.Language }}</p>      
       <p class="card-text">Rating: {{ movie.imdbRating }}</p>
       <p class="card-text">Awards: {{ movie.Awards }}</p>
+
+
+      <a class="btn btn-primary" href="{{url_for('add_to_favorite', favorite=movie.Title)}}">Add to Favorite</a>
     </div>
   </div>
 </div>
