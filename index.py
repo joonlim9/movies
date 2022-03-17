@@ -1,7 +1,8 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, session, redirect, url_for
 import requests
 
 app = Flask(__name__)
+app.secret_key = "fdfdfdfd"
 
 
 @app.route("/")
@@ -33,6 +34,15 @@ def search_by_title():
     if not movies:
         movies = False
     return render_template("results.html", movies=movies)
+
+
+@app.route("/favorite_list")
+def favorite_list():
+    favorite_list = session.get("favorite")
+    if favorite_list == None:
+        return redirect(url_for("main"))
+    
+    return render_template("favorite.html", favorite_list=favorite_list)
 
 
 if __name__ == "__main__":
