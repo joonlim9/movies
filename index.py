@@ -58,5 +58,16 @@ def add_to_favorite(title):
     return redirect(url_for("favorite_list"))
 
 
+@app.route("/remove_from_list/<title>")
+def remove_from_list(title):
+    # get favorite list from session and remove the designated movie
+    favorite_list = session.get("favorite")
+    favorite_list.pop(title, None)
+
+    # update session with new favorite list and return to favorite list page
+    session["favorite"] = favorite_list
+    return redirect(url_for("favorite_list")) 
+
+
 if __name__ == "__main__":
     app.run(debug=True)
