@@ -21,9 +21,7 @@
                 {% endif %}
                 <div class="card-body">
                 <h5 class="card-title">{{ movie.Title }}</h5>
-                <p class="card-text">
-                    {{ movie.Year }}
-                </p>
+                <p class="card-text"> {{ movie.Year }} </p>
                 <a href="{{url_for('single_movie', title=movie.Title)}}" class="btn btn-primary">Descriptions</a>
                 </div>
             </div>

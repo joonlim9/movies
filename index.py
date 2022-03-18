@@ -45,5 +45,18 @@ def favorite_list():
     return render_template("favorite.html", favorite_list=favorite_list)
 
 
+@app.route("/add_to_favorite/<title>")
+def add_to_favorite(title):
+    favorite_list = {}
+    if "favorite" in session:
+        favorite_list = session.get("favorite")
+    else:
+        session["favorite"] = {}
+
+    favorite_list[title] = title
+    session["favorite"] = favorite_list
+    return redirect(url_for("favorite_list"))
+
+
 if __name__ == "__main__":
     app.run(debug=True)
